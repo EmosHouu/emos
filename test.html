@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Test</title>
+</head>
+
+<body>
+  <input type="text" id="myInput">
+  <button onclick="showAlert()">Click me</button>
+  <button onclick="showAlert2()">Click me</button>
+
+  <script>
+    function showAlert() {
+      var inputValue = document.getElementById("myInput").value;
+      document.cookie = "input=" + inputValue;  // 儲存輸入的值至 cookie
+      var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)input\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      alert(cookieValue);
+    }
+
+    // Retrieve the stored value from localStorage
+    var storedValue = localStorage.getItem("input");
+    if (storedValue) {
+      document.getElementById("myInput").value = storedValue;
+    }
+
+    function showAlert2() {
+      var inputValue = document.getElementById("myInput").value;
+      localStorage.setItem("input", inputValue); // Store the input value in localStorage
+      var storedValue = localStorage.getItem("input");
+      alert(storedValue);
+    }
+  </script>
+</body>
+
+</html>
